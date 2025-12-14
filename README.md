@@ -1,4 +1,4 @@
-# Nexus API Testing Suite (Enterprise Edition)
+# 1AI API Testing Suite
 
 A professional, "end-to-end" API testing framework designed for the 1AI ecosystem. This codebase provides deep insights into network requests, error handling, credit management, and message history.
 
