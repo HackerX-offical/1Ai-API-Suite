@@ -4,6 +4,10 @@ export interface ChatMessagePayload {
   conversationId?: string;
 }
 
-export function buildChatPayload(message: string, model: string, conversationId?: string): ChatMessagePayload {
+export function buildChatPayload(
+  message: string,
+  model: string,
+  conversationId?: string,
+): ChatMessagePayload {
   return { message, model, conversationId };
 }

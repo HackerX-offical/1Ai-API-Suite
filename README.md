@@ -1,83 +1,51 @@
-# 1AI API Testing Suite
+# 1Ai-API-Suite
 
-A professional, "end-to-end" API testing framework designed for the 1AI ecosystem. This
-codebase provides deep insights into network requests, error handling, credit
-management, and message history.
+Node CLI and HTTP client for the 1Ai chat API with redaction-aware logging.
 
-##  Key Features
+## Why this exists
 
-- **CLI-First Workflow**: Rich, interactive terminal experience powered by `commander`
-  and `ora`.
-- **Persistent History**: Automatically logs every request and response to a local JSON
-  database so you never lose a trace.
-- **Advanced Networking**: Built on a modular `HttpClient` with interceptors for
-  request/response metrics (latency tracking).
-- **Environment Isolation**: Secure credential management via `.env`.
-- **Modular Architecture**:
-  - `src/core`: Low-level networking and data persistence.
-  - `src/modules`: Feature-specific logic (Chat, User).
-  - `src/cli`: Command-line interface definitions.
-  - `src/utils`: Formatting and logging helpers.
+Third-party AI gateways need reproducible clients for security review and integration
+testing on accounts you control.
 
-##  Getting Started
+## Features
 
-### 1. Installation
+- Commander CLI with config loading
+- HTTP header and payload builders with tests
+- Response redaction utilities
+
+## Install
 
 ```bash
+git clone https://github.com/HackerX-offical/1Ai-API-Suite.git
+cd 1Ai-API-Suite
 npm install
 ```
 
-### 2. Configuration
-
-Ensure your `.env` file is set up:
+## Quick start
 
 ```bash
-cp .env.example .env
-# Edit .env with your Token and IDs
+node src/cli/main.js
 ```
 
-### 3. Usage
+## Output
 
-The suite is run via `node index.js`.
+Stdout tables and chat responses; optional history files under configured paths.
 
-**Send a Message:**
+## Develop
 
 ```bash
-node index.js chat "Hello, is this working?"
+npm test
+npm run format:check
 ```
 
-**View Request History:**
+## Architecture
 
-```bash
-node index.js history
-```
-
-**Run Deep Diagnostics:**
-
-```bash
-node index.js probe
-```
-
-**Change Model:**
-
-```bash
-node index.js chat "Test message" --model "google/gemini-2.5-flash"
-```
-
-##  Under the Hood
-
-- **Interceptors**: Every request is stamped with a UUID and start time. Network latency
-  is calculated and logged.
-- **Fail-Safe Logging**: Even if the network crashes, errors are serialized and stored
-  in `src/data/history.json` for post-mortem analysis.
-
----
-
-_Built for High-Level API Security & Reliability Testing_
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for module layout and extension points.
 
 ## Ethics
 
-Use only on systems and content you are **authorized** to access. See [SECURITY.md](./SECURITY.md).
+Use only on systems and content you are **authorized** to test. See
+[SECURITY.md](./SECURITY.md).
 
 ## License
 
