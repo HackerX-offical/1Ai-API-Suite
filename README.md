@@ -75,6 +75,10 @@ node index.js chat "Test message" --model "google/gemini-2.5-flash"
 
 _Built for High-Level API Security & Reliability Testing_
 
+## Ethics
+
+Use only on systems and content you are **authorized** to access. See [SECURITY.md](./SECURITY.md).
+
 ## License
 
 Licensed under the [HackerX License](./LICENSE). Redistributions must retain copyright,
