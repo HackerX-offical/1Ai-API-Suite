@@ -5,13 +5,13 @@ const logger = require('../utils/logger');
 class ApiService {
   constructor() {
     this.client = axios.create({
-      baseURL: config.api.baseUrl, // Note: The URL in config is full path, but axios uses baseURL for relative. 
+      baseURL: config.api.baseUrl, // Note: The URL in config is full path, but axios uses baseURL for relative.
       // Since we have a full URL in env, we'll just use it directly in the request or handle it here.
       // For this implementation, we'll assume the env var is the endpoint itself as per script.js
       headers: {
         ...config.headers,
-        'Authorization': `Bearer ${config.auth.token}`
-      }
+        Authorization: `Bearer ${config.auth.token}`,
+      },
     });
   }
 
@@ -19,11 +19,11 @@ class ApiService {
    * Sends a chat message to the API
    * @param {string} message - The user message
    */
-  async sendChatMessage(message = "Hi") {
+  async sendChatMessage(message = 'Hi') {
     const payload = {
       message,
       model: config.chat.model,
-      conversationId: config.chat.conversationId
+      conversationId: config.chat.conversationId,
     };
 
     logger.info('Sending Request...', { endpoint: config.api.baseUrl, model: payload.model });

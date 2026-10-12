@@ -18,9 +18,9 @@ class HistoryManager {
       request: prompt,
       response: response,
       metadata: metadata,
-      status: metadata.status || 'success'
+      status: metadata.status || 'success',
     };
-    
+
     this.data.push(entry);
     this._persist();
     return entry;

@@ -14,9 +14,9 @@ module.exports = {
   },
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'User-Agent': 'axios/1.x',
-    'Origin': 'https://1ai.co',
-    'Referer': 'https://1ai.co/',
-  }
+    Origin: 'https://1ai.co',
+    Referer: 'https://1ai.co/',
+  },
 };

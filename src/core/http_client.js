@@ -8,7 +8,7 @@ class HttpClient {
     this.client = axios.create({
       baseURL: config.api.baseUrl,
       timeout: config.api.timeout,
-      headers: config.headers
+      headers: config.headers,
     });
 
     this._setupInterceptors();
@@ -19,8 +19,10 @@ class HttpClient {
     this.client.interceptors.request.use(
       (req) => {
         req.metadata = { startTime: new Date(), requestId: uuidv4() };
-        logger.debug(`[${req.metadata.requestId}] Outgoing Request: ${req.method.toUpperCase()} ${req.url}`);
-        
+        logger.debug(
+          `[${req.metadata.requestId}] Outgoing Request: ${req.method.toUpperCase()} ${req.url}`,
+        );
+
         // Dynamic Token Injection
         const token = config.auth.token;
         if (token) {
@@ -28,7 +30,7 @@ class HttpClient {
         }
         return req;
       },
-      (error) => Promise.reject(error)
+      (error) => Promise.reject(error),
     );
 
     // Response Interceptor
@@ -42,7 +44,7 @@ class HttpClient {
         const duration = error.config ? new Date() - error.config.metadata.startTime : 0;
         logger.error(`Request Failed after ${duration}ms`, error);
         return Promise.reject(error);
-      }
+      },
     );
   }
 

@@ -10,15 +10,9 @@ const dayjs = require('dayjs');
 
 const program = new Command();
 
-console.log(
-  chalk.cyan(
-    figlet.textSync('Nexus Suite', { horizontalLayout: 'full' })
-  )
-);
+console.log(chalk.cyan(figlet.textSync('Nexus Suite', { horizontalLayout: 'full' })));
 
-program
-  .version('2.0.0')
-  .description('Enterprise Grade 1AI API Testing Suite');
+program.version('2.0.0').description('Enterprise Grade 1AI API Testing Suite');
 
 program
   .command('chat')
@@ -28,12 +22,12 @@ program
   .option('-v, --verbose', 'Enable verbose logging')
   .action(async (message, options) => {
     if (options.verbose) logger.setLevel('DEBUG');
-    
+
     const spinner = ora('Sending request to Neural Network...').start();
     try {
       const response = await chatService.sendMessage(message, options);
       spinner.succeed('Response Received');
-      
+
       console.log(chalk.green('\n------------------------------'));
       console.log(chalk.bold('AI Response:'));
       console.log(JSON.stringify(response, null, 2));
@@ -56,19 +50,25 @@ program
     }
 
     const table = new Table({
-      head: [chalk.cyan('Time'), chalk.cyan('Status'), chalk.cyan('Prompt'), chalk.cyan('Response Preview')],
-      colWidths: [22, 10, 30, 40]
+      head: [
+        chalk.cyan('Time'),
+        chalk.cyan('Status'),
+        chalk.cyan('Prompt'),
+        chalk.cyan('Response Preview'),
+      ],
+      colWidths: [22, 10, 30, 40],
     });
 
-    history.forEach(entry => {
+    history.forEach((entry) => {
       const respPreview = JSON.stringify(entry.response).substring(0, 35) + '...';
-      const statusColor = entry.status === 200 || entry.status === 'success' ? chalk.green : chalk.red;
-      
+      const statusColor =
+        entry.status === 200 || entry.status === 'success' ? chalk.green : chalk.red;
+
       table.push([
         dayjs(entry.timestamp).format('YYYY-MM-DD HH:mm:ss'),
         statusColor(entry.status),
         entry.request.substring(0, 25),
-        respPreview
+        respPreview,
       ]);
     });
 
@@ -83,11 +83,11 @@ program
     // A simplified probe that just sends a ping
     const spinner = ora('Probing connection...').start();
     try {
-      await chatService.sendMessage("Ping");
-      spinner.succeed("Connection Healthy");
+      await chatService.sendMessage('Ping');
+      spinner.succeed('Connection Healthy');
     } catch (e) {
-      spinner.fail("Probe Failed");
-      logger.error("Diagnostic Data:", e);
+      spinner.fail('Probe Failed');
+      logger.error('Diagnostic Data:', e);
     }
   });
 
