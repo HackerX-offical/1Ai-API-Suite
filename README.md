@@ -16,7 +16,7 @@ testing on accounts you control.
 ## Install
 
 ```bash
-git clone https://github.com/HackerX-offical/1Ai-API-Suite.git
+git clone https://github.com/HackerX-official/1Ai-API-Suite.git
 cd 1Ai-API-Suite
 npm install
 ```
